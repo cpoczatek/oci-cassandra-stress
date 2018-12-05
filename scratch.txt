@@ -1,0 +1,64 @@
+
+
+
+
+module[0].   vvv
+
+resources.oci_core_subnet.subnet.primary.id
+resources.oci_core_subnet.subnet.primary.attributes.availability_domain
+
+apt-cache search dse
+apt-cache madison dse
+
+echo "deb http://datastax%40oracle.com:*9En9HH4j%5Ep4@debian.datastax.com/enterprise stable main" | sudo tee -a /etc/apt/sources.list.d/datastax.sources.list
+dse_version="4.8.15-1"
+curl -L http://debian.datastax.com/debian/repo_key | sudo apt-key add -
+apt-get -y update
+apt-get -y install openjdk-8-jdk python
+wget http://launchpadlibrarian.net/109052632/python-support_1.0.15_all.deb
+dpkg -i python-support_1.0.15_all.deb
+
+# 4.8
+apt-get install \
+  dse-full=$dse_version \
+  dse=$dse_version \
+  dse-hive=$dse_version \
+  dse-pig=$dse_version \
+  dse-demos=$dse_version \
+  dse-libsolr=$dse_version \
+  dse-libtomcat=$dse_version \
+  dse-libsqoop=$dse_version \
+  dse-liblog4j=$dse_version \
+  dse-libmahout=$dse_version \
+  dse-libhadoop-native=$dse_version \
+  dse-libcassandra=$dse_version \
+  dse-libhive=$dse_version \
+  dse-libpig=$dse_version \
+  dse-libhadoop=$dse_version \
+  dse-libspark=$dse_version
+
+# 5.0, and higher?
+apt-get -y install \
+  dse-full=$dse_version \
+  dse=$dse_version \
+  dse-demos=$dse_version \
+  dse-libsolr=$dse_version \
+  dse-libtomcat=$dse_version \
+  dse-liblog4j=$dse_version \
+  dse-libcassandra=$dse_version \
+  dse-libspark=$dse_version \
+  dse-libhadoop2-client-native=$dse_version \
+  dse-libgraph=$dse_version \
+  dse-libhadoop2-client=$dse_version \
+  dse-pig=$dse_version \
+  dse-hove=$dse_version
+
+
+# PAR, must be copied, not visible after navigating away
+https://objectstorage.us-phoenix-1.oraclecloud.com/p/zo4kAY7vWYe2zq9B38mCyVqkv0cXNV9MQaxRuEpmm9A/n/intmahesht/b/dse-perf/o/
+
+url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/zo4kAY7vWYe2zq9B38mCyVqkv0cXNV9MQaxRuEpmm9A/n/intmahesht/b/dse-perf/o/"
+curl -X PUT -d 'mkpl.txt' $url"/mkpl.txt"
+curl -v -X PUT -d 'mkpl.txt' $url"/b/mkpl.txt"
+
+oci os object bulk-download -ns intmahesht -bn dse-perf --download-dir ./
