@@ -24,3 +24,6 @@ resource "oci_core_instance" "client" {
   }
   count = "${var.clients["node_count"]}"
 }
+
+output "Client public IPs" { value = "${join(",", oci_core_instance.client.*.public_ip)}" }
+output "Client private IPs" { value = "${join(",", oci_core_instance.client.*.private_ip)}" }
