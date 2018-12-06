@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-CLUSTER_TF_PATH="/Users/jpoczate/repos/oci-datastax/simple"
+if [ -z "$1" ]; then
+  echo "No args passed, need path to TF that deployed cluster..."
+  exit 1
+fi
+
 STATE="$CLUSTER_TF_PATH/terraform.tfstate"
 
 subnet_ocid=$(cat $STATE | jq '.modules[0].resources."oci_core_subnet.subnet".primary.id')
