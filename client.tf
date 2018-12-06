@@ -1,6 +1,6 @@
 resource "oci_core_instance" "client" {
   display_name        = "client-${count.index}"
-  compartment_id      = "${var.tenancy_ocid}"
+  compartment_id      = "${var.compartment_ocid}"
   availability_domain = "${var.availability_domain}"
   shape               = "${var.clients["shape"]}"
   subnet_id           = "${var.subnet_ocid}"
@@ -19,6 +19,8 @@ resource "oci_core_instance" "client" {
     user_data           = "${base64encode(format("%s\n%s\n%s\n",
       "#!/usr/bin/env bash",
       "nodes=${var.nodes}",
+      "test_name=${var.test_name}",
+      "par=${var.par}"
       file("test.sh")
     ))}"
   }
