@@ -16,13 +16,14 @@ resource "oci_core_instance" "client" {
 
   metadata {
     ssh_authorized_keys = "${var.ssh_public_key}"
-    user_data           = "${base64encode(format("%s\n%s\n%s\n",
+    user_data           = "${base64encode(join("\n", list(
       "#!/usr/bin/env bash",
-      "nodes=${var.nodes}",
-      "test_name=${var.test_name}",
-      "par=${var.par}"
+      "nodes=\"${var.nodes}\"",
+      "test_name=\"${var.test_name}\"",
+      "par=\"${var.par}\"",
+      file("setup.sh"),
       file("test.sh")
-    ))}"
+    )))}"
   }
   count = "${var.clients["node_count"]}"
 }
