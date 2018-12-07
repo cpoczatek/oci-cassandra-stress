@@ -2,7 +2,8 @@
 
 
 if [ -z "$1" ]; then
-  echo "No args passed, need path to TF that deployed cluster..."
+  echo "Arg not passed, need path to TF that deployed cluster."
+  echo "call: deploy.sh path_to_cluster_tf "
   exit 1
 fi
 
@@ -13,6 +14,7 @@ STATE="$CLUSTER_TF_PATH/terraform.tfstate"
 subnet_ocid=$(cat $STATE | jq '.modules[0].resources."oci_core_subnet.subnet".primary.id')
 availability_domain=$(cat $STATE | jq '.modules[0].resources."oci_core_subnet.subnet".primary.attributes.availability_domain')
 nodes=$(cat $STATE | jq '.modules[0].outputs."Node private IPs".value')
+test_name="test"
 
 echo $subnet_ocid
 echo $availability_domain
