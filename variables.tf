@@ -17,8 +17,7 @@ variable "ssh_public_key" {}
 variable "ssh_private_key" {}
 
 # ---------------------------------------------------------------------------------------------------------------------
-# Optional variables
-# The defaults here will give you a cluster.  You can also modify these.
+# Test variables
 # ---------------------------------------------------------------------------------------------------------------------
 
 variable "subnet_ocid" {}
@@ -35,6 +34,12 @@ variable "clients" {
 
 # comma separated list of node IPs
 variable "nodes" {}
+
+# test name for upload
+variable "test_name" {}
+
+# PAR to upload logs
+variable "par" {}
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Constants
