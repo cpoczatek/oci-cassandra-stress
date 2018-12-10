@@ -96,7 +96,7 @@ cassandra-stress user profile=stress.yaml ops\(insert=10\) \
    hdrfile=load.hdr -graph file=load.html \
    title=load
 
-# brief warmuo
+# brief warmup
 cassandra-stress user profile=stress.yaml ops\(insert=15,query_by_id=5\) \
    duration=5m cl=QUORUM no-warmup -mode native cql3 protocolVersion=3 -errors ignore \
    -rate threads=350 -pop seq=$((1+(num*block)))..$((block+(num*block))) contents=SORTED -insert visits=fixed\(100\) \
