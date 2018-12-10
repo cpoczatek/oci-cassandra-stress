@@ -91,7 +91,7 @@ EOF
 block=5000000
 cassandra-stress user profile=stress.yaml ops\(insert=10\) \
    n=$block cl=ONE no-warmup -mode native cql3 protocolVersion=3 -errors ignore \
-   -rate threads=350 -pop seq=$(((1+(num*block))))..$(((block+(num*block)))) contents=SORTED -insert visits=fixed\(100\) \
+   -rate threads=350 -pop seq=$((1+(num*block)))..$((block+(num*block))) contents=SORTED -insert visits=fixed\(100\) \
    -node $nodes -log file=load.log \
    hdrfile=load.hdr -graph file=load.html \
    title=load
@@ -99,7 +99,7 @@ cassandra-stress user profile=stress.yaml ops\(insert=10\) \
 # brief warmuo
 cassandra-stress user profile=stress.yaml ops\(insert=15,query_by_id=5\) \
    duration=5m cl=QUORUM no-warmup -mode native cql3 protocolVersion=3 -errors ignore \
-   -rate threads=350 -pop seq=$(((1+(num*block))))..$(((block+(num*block)))) contents=SORTED -insert visits=fixed\(100\) \
+   -rate threads=350 -pop seq=$((1+(num*block)))..$((block+(num*block))) contents=SORTED -insert visits=fixed\(100\) \
    -node $nodes -log file=warm.log \
    hdrfile=warm.hdr -graph file=warm.html \
    title=warm
@@ -107,7 +107,7 @@ cassandra-stress user profile=stress.yaml ops\(insert=15,query_by_id=5\) \
 # actual test
 cassandra-stress user profile=stress.yaml ops\(insert=15,query_by_id=5\) \
   duration=30m cl=QUORUM no-warmup -mode native cql3 protocolVersion=3 -errors ignore \
-  -rate threads=350 -pop seq=$(((1+(num*block))))..$(((block+(num*block)))) contents=SORTED -insert visits=fixed\(100\) \
+  -rate threads=350 -pop seq=$((1+(num*block)))..$((block+(num*block))) contents=SORTED -insert visits=fixed\(100\) \
   -node $nodes -log file=test.log \
   hdrfile=test.hdr -graph file=test.html \
   title=test
