@@ -28,7 +28,7 @@ variable "clients" {
   type = "map"
   default = {
     shape = "VM.Standard2.4"
-    node_count = 3
+    node_count = 10
   }
 }
 
