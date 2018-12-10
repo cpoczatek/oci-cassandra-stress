@@ -58,13 +58,15 @@ table_definition: |
 ### Column Distribution Specifications ###
 columnspec:
   - name: id
-    population: uniform(10..20) # 10-20 chars population: uniform(1..10)
+    size: fixed(32)
+    population: seq(1..5b)
   - name: device_id
-    population: uniform(10..20)
+    size: fixed(32)
+    population: seq(1..5b)
   - name: first_seen
     size: uniform(20..40)
   - name: last_seen
-    population: uniform(20..40)
+    size: uniform(20..40)
   - name: most_recent_edna_result
     population: uniform(10..20)
   - name: payment_instrument_id
