@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-if [ -z "$1" ]; then
-  echo "No args passed, need path to TF that deployed cluster..."
-  exit 1
-fi
-
-CLUSTER_TF_PATH=$1
 
 STATE="$CLUSTER_TF_PATH/terraform.tfstate"
 
@@ -20,4 +14,6 @@ echo $nodes
 terraform destroy \
   -var "subnet_ocid=$subnet_ocid" \
   -var "availability_domain=$availability_domain" \
-  -var "nodes=$nodes"
+  -var "nodes=$nodes" \
+  -var "test_name"=$TEST_NAME \
+  -var "par=$PAR"
