@@ -33,6 +33,7 @@ keyspace_definition: |
 table: uac
 
 # The CQL for creating a table you wish to stress (optional if it already exists)
+# 4.8 uses different caching sytax???: AND caching = '{"keys":"ALL", "rows_per_partition":"NONE"}'
 table_definition: |
   CREATE TABLE stress.uac (
       id text PRIMARY KEY,
@@ -43,7 +44,7 @@ table_definition: |
       payment_instrument_id text,
       uai_id text
   ) WITH bloom_filter_fp_chance = 0.01
-      AND caching = '{"keys":"ALL", "rows_per_partition":"NONE"}'
+      AND caching = {'keys':'ALL', 'rows_per_partition':'NONE'}
       AND comment = ''
       AND compaction = {'class': 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy'}
       AND compression = {'sstable_compression': 'org.apache.cassandra.io.compress.LZ4Compressor'}
