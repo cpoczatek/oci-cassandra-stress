@@ -26,10 +26,13 @@ iptables -P FORWARD ACCEPT
 #######################################################
 ######################### Java ########################
 #######################################################
-echo "Installing Oracle Java 8 JDK..."
-wget -O ~/jdk8.rpm -N --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" \
-  https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.rpm
-yum -y localinstall ~/jdk8.rpm
+#echo "Installing Oracle Java 8 JDK..."
+#wget -O ~/jdk8.rpm -N --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" \
+#  https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.rpm
+#yum -y localinstall ~/jdk8.rpm
+
+echo "Installing openjdk Java 8 JDK..."
+yum -y install java-1.8.0-openjdk
 
 #######################################################
 ####################### DataStax ######################
