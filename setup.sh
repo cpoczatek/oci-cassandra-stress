@@ -40,10 +40,14 @@ yum -y install java-1.8.0-openjdk
 
 sudo yum install libaio
 
-echo "[datastax]
-name = DataStax Repository
-baseurl=https://datastax%40oracle.com:*9En9HH4j^p4@rpm.datastax.com/enterprise
-enabled=1
-gpgcheck=0" > /etc/yum.repos.d/datastax.repo
+echo "Installing Cassandra..."
 
-yum -y install dse-full-6.0.4-1
+# replace 311x with 21x for 2.1.x
+echo "[cassandra]
+name=Apache Cassandra
+baseurl=https://www.apache.org/dist/cassandra/redhat/311x/
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://www.apache.org/dist/cassandra/KEYS" | \
+  sudo tee -a /etc/yum.repos.d/cassandra.repo
+sudo yum -y install cassandra
