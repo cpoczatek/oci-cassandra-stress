@@ -98,7 +98,7 @@ cassandra-stress user profile=stress.yaml ops\(insert=10\) \
    title=load
 
 # brief warmup
-cassandra-stress user profile=stress.yaml ops\(insert=15,query_by_id=5\) \
+cassandra-stress user profile=stress.yaml ops\(insert=15,query_by_id=15\) \
    duration=5m cl=QUORUM no-warmup -mode native cql3 protocolVersion=3 -errors ignore \
    -rate threads=350 -pop seq=$((1+(num*block)))..$((block+(num*block))) contents=SORTED -insert visits=fixed\(100\) \
    -node $nodes -log file=warm.log \
@@ -106,7 +106,7 @@ cassandra-stress user profile=stress.yaml ops\(insert=15,query_by_id=5\) \
    title=warm
 
 # actual test
-cassandra-stress user profile=stress.yaml ops\(insert=15,query_by_id=5\) \
+cassandra-stress user profile=stress.yaml ops\(insert=15,query_by_id=15\) \
   duration=30m cl=QUORUM no-warmup -mode native cql3 protocolVersion=3 -errors ignore \
   -rate threads=350 -pop seq=$((1+(num*block)))..$((block+(num*block))) contents=SORTED -insert visits=fixed\(100\) \
   -node $nodes -log file=test.log \
